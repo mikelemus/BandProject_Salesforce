@@ -1,0 +1,42 @@
+<template>
+    <template if:true={albums}>
+        <template for:each={albums} for:item='album' for:index='i'>
+            
+            <div class="margin-bottom" key={album.albumName}>
+               
+                <lightning-card title={album.albumName}> 
+
+                    <lightning-card >
+                        <div class="slds-m-around_medium">
+                            <img src={album.albumCover}>
+                        </div>
+                    </lightning-card>
+                    <h2 key={album.albumReleaseDate}>{album.albumReleaseDate}</h2>
+
+                    
+                    <!-- <lightning-button variant={buttomColor} label={buttomLabel} slot="actions" value={i} onclick={Sz}></lightning-button> -->
+                    
+                    <template if:false={album.showSongs}>
+                    <lightning-button variant="brand" label="Show Songs" value={i} slot="actions"  onclick={Sz}  ></lightning-button>
+                    </template>
+                    
+                    <template if:true={album.showSongs}>
+                    <lightning-button variant="destructive" label="Hide Songs" value={i} slot="actions"  onclick={Sz} ></lightning-button>
+                    </template> 
+                    
+                    <template if:true={album.showSongs}>
+                        <template for:each={album.albumSongList} for:item='song'>
+                
+                            <h2 key={song.Name} class="g">{song.Name}</h2>
+                                
+                        </template>
+                    </template>
+                    
+                   
+                </lightning-card>
+                
+            </div>
+           
+        </template>
+    </template>
+</template>
